@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import './Login.css'
-import supabase from '@utils/supabase'
+import supabase from '../utils/supabase'
 import bcrypt from 'bcryptjs'
 
 export default function Login() {

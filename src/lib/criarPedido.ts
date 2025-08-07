@@ -1,11 +1,10 @@
 // Local recomendado: src/lib/criarPedido.ts ou services/criarPedido.ts
-// Este arquivo pode ser importado de qualquer parte do app
-
 import { createClient } from '@supabase/supabase-js';
 
+// ✅ Substituição correta pra ambiente Vite/Web:
 const supabase = createClient(
-    process.env.EXPO_PUBLIC_SUPABASE_URL!,
-    process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY!
+    import.meta.env.VITE_SUPABASE_URL,
+    import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
 export async function criarPedidoSimples({
@@ -13,13 +12,13 @@ export async function criarPedidoSimples({
     id_base,
     id_suporte,
     nome_customizado,
-}: {
+    }: {
     id_usuario: number;
     id_base: number;
     id_suporte: number;
     nome_customizado: string;
-}) {
-  // 1. Verifica se produto já existe
+    }) {
+    // 1. Verifica se produto já existe
     const { data: existente, error: erroBusca } = await supabase
         .from('produtos_personalizados')
         .select('id_produto')
@@ -46,8 +45,8 @@ export async function criarPedidoSimples({
         .single();
 
         if (erroCriacao || !novo) {
-            console.error(erroCriacao);
-            return { error: erroCriacao?.message || 'Erro ao criar produto personalizado' };
+        console.error(erroCriacao);
+        return { error: erroCriacao?.message || 'Erro ao criar produto personalizado' };
         }
 
         id_produto = novo.id_produto;
