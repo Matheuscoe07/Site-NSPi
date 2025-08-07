@@ -1,16 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { criarPedidoSimples } from '../lib/criarPedido';
 import './pedido.css';
 
-const coresSuporte = [
+// Tipagem opcional pra evitar erros no TypeScript
+interface CorItem {
+    id: number;
+    cor: string;
+    imagem: string;
+}
+
+const coresSuporte: CorItem[] = [
     { id: 1, cor: 'blue', imagem: '/images/sup_azul.png' },
     { id: 2, cor: 'red', imagem: '/images/sup_vermelho.png' },
     { id: 3, cor: 'yellow', imagem: '/images/sup_amarelo.png' },
     { id: 4, cor: 'green', imagem: '/images/sup_verde.png' },
 ];
 
-const coresBase = [
+const coresBase: CorItem[] = [
     { id: 5, cor: 'black', imagem: '/images/ba_preto.png' },
     { id: 6, cor: 'lightgray', imagem: '/images/ba_cinzaCA.png' },
     { id: 8, cor: 'darkgray', imagem: '/images/ba_cinzaES.png' },
@@ -19,9 +26,9 @@ const coresBase = [
 ];
 
 export default function Pedido() {
-    const [corSuporte, setCorSuporte] = useState(coresSuporte[0]);
-    const [corBase, setCorBase] = useState(coresBase[0]);
-    const [etapa, setEtapa] = useState('suporte');
+    const [corSuporte, setCorSuporte] = useState<CorItem>(coresSuporte[0]);
+    const [corBase, setCorBase] = useState<CorItem>(coresBase[0]);
+    const [etapa, setEtapa] = useState<'suporte' | 'base'>('suporte');
     const navigate = useNavigate();
 
     const handleFeito = async () => {
@@ -48,19 +55,23 @@ export default function Pedido() {
         }
     };
 
-    const renderCores = (lista, selecionado, setSelecionado) => (
+    const renderCores = (
+        lista: CorItem[],
+        selecionado: CorItem,
+        setSelecionado: React.Dispatch<React.SetStateAction<CorItem>>
+    ) => (
         <div className="lista-cores">
-        {lista.map((item, index) => {
+        {lista.map((item) => {
             const isSelecionado = selecionado.cor === item.cor;
             return (
             <div
-                key={index}
+                key={item.id}
                 onClick={() => setSelecionado(item)}
                 className={`bolinha-wrapper ${isSelecionado ? 'selecionado' : ''}`}
             >
                 <div
                 className="bolinha"
-                style={{ backgroundColor: typeof item.cor === 'string' ? item.cor : undefined }}
+                style={{ backgroundColor: item.cor !== 'transparente' ? item.cor : undefined }}
                 >
                 {item.cor === 'transparente' && (
                     <img src={item.imagem} alt={item.cor} className="bolinha-img" />
@@ -79,7 +90,11 @@ export default function Pedido() {
         </div>
 
         <div className="visualizacao">
-            <img src={etapa === 'suporte' ? corSuporte.imagem : corBase.imagem} alt="visualizacao" className="imagem" />
+            <img
+            src={etapa === 'suporte' ? corSuporte.imagem : corBase.imagem}
+            alt="visualizacao"
+            className="imagem"
+            />
         </div>
 
         <div className="controles">
