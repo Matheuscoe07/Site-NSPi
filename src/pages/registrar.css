@@ -1,0 +1,69 @@
+/* styles/registrar.css */
+
+.registrar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+.registrar-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 48px;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.input {
+    width: 80%;
+    max-width: 400px;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.button {
+    width: 80%;
+    max-width: 400px;
+    background-color: #003b61;
+    padding: 14px;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.button:hover {
+    background-color: #005084;
+}
+
+.login-prompt {
+    text-align: center;
+    font-size: 14px;
+}
+
+.login-link {
+    color: #003b61;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}

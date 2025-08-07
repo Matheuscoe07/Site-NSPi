@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import bcrypt from 'bcryptjs'
 import supabase from '@supabase/supabase-js'
-import '../styles/registrar.css'
+import './registrar.css'
 
 export default function RegisterPage() {
     const [nome, setNome] = useState('')
