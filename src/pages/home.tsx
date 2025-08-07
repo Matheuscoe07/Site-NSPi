@@ -31,10 +31,10 @@ export default function Home() {
 
     const renderItem = (item: Produto) => (
         <div className="catalog-item" key={item.id}>
-        <div className="image-wrapper">
+            <div className="image-wrapper">
             <img src={item.imagem} alt={item.nome} className="catalog-image" />
-        </div>
-        <p className="catalog-title">{item.nome}</p>
+            </div>
+            <p className="catalog-title">{item.nome}</p>
         </div>
     )
 

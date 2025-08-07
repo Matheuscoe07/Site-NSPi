@@ -1,0 +1,89 @@
+/* pedido.css */
+
+.pedido-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e3e3e3;
+    min-height: 100vh;
+    padding: 16px;
+}
+
+.top-bar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.pronto-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #333;
+    background-color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.visualizacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 24px 0;
+}
+
+.imagem {
+    width: 40vw;
+    height: 40vw;
+    object-fit: contain;
+}
+
+.controles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background-color: white;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.lista-cores {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px;
+    background-color: white;
+    width: 100%;
+}
+
+.bolinha-wrapper {
+    padding: 4px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.bolinha-wrapper.selecionado {
+    border-color: black;
+    border-width: 3px;
+}
+
+.bolinha {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bolinha-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
