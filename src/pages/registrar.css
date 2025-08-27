@@ -1,69 +1,155 @@
-/* styles/registrar.css */
+:root{
+  --blue-900:#0b2a47;
+  --text:#0e2237;
+  --muted:#6a7585;
+  --bg:#f5f7fb;
+  --white:#fff;
+  --shadow-lg:0 24px 60px rgba(8,22,40,.18);
+  --shadow-md:0 10px 28px rgba(8,22,40,.12);
+  --r-xl:28px;
 
-.registrar-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 24px;
-    background-color: #f9f9f9;
-    min-height: 100vh;
+  --form-w:420px;
+  --input-h:48px;
 }
 
-.registrar-title {
-    font-size: 26px;
-    font-weight: bold;
-    margin-top: 48px;
-    margin-bottom: 24px;
-    text-align: center;
+*{ box-sizing:border-box }
+html,body,#root{ height:100% }
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
 }
 
-.form-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+/* ===== LAYOUT ===== */
+.screen{
+  min-height:100dvh;
+  display:grid;
+  place-items:center;
+  padding:28px;
 }
 
-.input {
-    width: 80%;
-    max-width: 400px;
-    padding: 12px;
-    margin-bottom: 16px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    font-size: 16px;
+.card{
+  width:min(1180px,95vw);
+  min-height:560px;
+  background:var(--white);
+  border-radius:var(--r-xl);
+  box-shadow:var(--shadow-lg);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  overflow:hidden;
+  position:relative;
 }
 
-.button {
-    width: 80%;
-    max-width: 400px;
-    background-color: #003b61;
-    padding: 14px;
-    border-radius: 8px;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 16px;
+.pane{
+  position:relative;
+  padding:48px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
-.button:hover {
-    background-color: #005084;
+.pane.left{
+  background:var(--blue-900);
+  color:#fff;
 }
 
-.login-prompt {
-    text-align: center;
-    font-size: 14px;
+.pane.right{
+  background:var(--white);
+  color:var(--text);
 }
 
-.login-link {
-    color: #003b61;
-    font-weight: bold;
-    text-decoration: none;
+/* ===== TÍTULOS ===== */
+.title{
+  margin:0 0 24px;
+  font-size:42px;
+  font-weight:800;
+  text-align:center;
 }
 
-.login-link:hover {
-    text-decoration: underline;
+.ghost-title{
+  margin:0 0 24px;   /* padding extra só no título da esquerda */
+  font-size:38px;
+  font-weight:800;
+  text-align:center;
+}
+
+.welcome{
+  margin:0 0 28px;
+  font-size:18px;
+  color:var(--muted);
+  text-align:center;
+}
+
+/* ===== FORM ===== */
+.stack{
+  width:100%;
+  max-width:var(--form-w);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.input{
+  width:100%;
+  height:var(--input-h);
+  border-radius:12px;
+  border:none;
+  outline:none;
+  padding:0 16px;
+  font-size:15px;
+  background:#e9eef5;
+  color:#0e2237;
+}
+.input::placeholder{ color:#8a94a6; }
+
+/* ===== BOTÕES ===== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:48px;
+  padding:0 24px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:16px;
+  text-decoration:none;
+  user-select:none;
+  transition:.2s ease;
+  cursor:pointer;
+}
+
+/* Cadastrar = ghost button */
+.outline-light{
+  margin:24px auto 0;  /* centraliza com auto nas laterais */
+  background:transparent;
+  border:2px solid #fff;
+  color:#fff;
+  width:200px;         /* tira full width e deixa tamanho fixo */
+  text-align:center;
+}
+.outline-light:hover{
+  background:rgba(255,255,255,.1);
+  transform:translateY(-1px);
+}
+
+/* Entrar = botão sólido */
+.solid-dark{
+  width:200px;
+  background:var(--blue-900);
+  border:2px solid var(--blue-900);
+  color:#fff;
+  box-shadow:var(--shadow-md);
+}
+.solid-dark:hover{
+  filter:brightness(1.05);
+  transform:translateY(-1px);
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 900px){
+  .card{ grid-template-columns:1fr; }
+  .pane{ padding:32px 20px; }
+  .solid-dark{ width:100%; max-width:320px; } /* só o Entrar fica responsivo */
 }
