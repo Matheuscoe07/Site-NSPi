@@ -1,16 +1,21 @@
-import { useNavigate } from 'react-router-dom';
-import './confirmado.css';
+import { useNavigate } from 'react-router-dom'
+import './confirmado.css'
 
 export default function Confirmado() {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     return (
-        <div className="confirmado-container">
-        <h1 className="confirmado-titulo">Pedido confirmado com sucesso!</h1>
-        <p className="confirmado-texto">Olhe para as máquinas 👀✨</p>
+        <div className="confirmado-screen">
+        <div className="confirmado-card">
+            <h1 className="confirmado-titulo">PEDIDO CONCLUIDO!</h1>
+            <p className="confirmado-texto">
+            Seu pedido foi efetuado com sucesso.<br />
+            Olhe para as maquinas !!!
+            </p>
+        </div>
         <button className="confirmado-botao" onClick={() => navigate('/')}>
-            Voltar ao Início
+            HOME
         </button>
         </div>
-    );
+    )
 }
