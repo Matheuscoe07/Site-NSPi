@@ -13,7 +13,7 @@ export default function App() {
     <AuthProvider>
       <Routes>
         {/* Home única (mostra estados diferentes conforme login) */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Pedido />} /> {/* VOLTAR PARA A TELA HOME!!!!!!!!!!!!! */}
 
         {/* Públicas */}
         <Route path="/login" element={<Login />} />
