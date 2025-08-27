@@ -56,21 +56,6 @@ export default function Login() {
         }
     }
 
-    async function signInWithProvider(provider: 'google' | 'azure') {
-        try {
-        setLoading(true)
-        const { error } = await supabase.auth.signInWithOAuth({
-            provider,
-            options: { redirectTo: `${window.location.origin}/home` },
-        })
-        if (error) throw error
-        } catch (e) {
-        console.error(e)
-        alert('Falha ao iniciar login social.')
-        setLoading(false)
-        }
-    }
-
     return (
         <div className="screen">
         <main className="card">
@@ -78,37 +63,6 @@ export default function Login() {
             <section className="panel left">
             <div className="inner left-inner">
                 <h2 className="title">Entrar</h2>
-
-                {/* ===== Social (comentado a pedido) ===== */}
-                {/*
-                <div className="social" aria-label="Entrar com">
-                <button
-                    className="icon-btn"
-                    title="Entrar com Google"
-                    onClick={() => signInWithProvider('google')}
-                >
-                    <svg viewBox="0 0 48 48" aria-hidden="true">
-                    <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3A12 12 0 1 1 24 12a11.9 11.9 0 0 1 8.5 3.5l5.7-5.7A20 20 0 1 0 44 24c0-1.2-.1-2.1-.4-3.5z"/>
-                    <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8A12 12 0 0 1 24 12c3.2 0 6 .9 8.5 3.5l5.7-5.7A20 20 0 0 0 6.3 14.7z"/>
-                    <path fill="#4CAF50" d="M24 44a20 20 0 0 0 19.8-16H24v8h11.3A12 12 0 0 1 24 44z"/>
-                    <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3A12 12 0 0 1 24 44c-6.5 0-12-4.3-13.9-10.3l-6.6 5A20 20 0 1 0 44 24c0-1.2-.1-2.1-.4-3.5z" opacity=".08"/>
-                    </svg>
-                </button>
-
-                <button
-                    className="icon-btn"
-                    title="Entrar com Microsoft"
-                    onClick={() => signInWithProvider('azure')}
-                >
-                    <svg viewBox="0 0 23 23" aria-hidden="true">
-                    <rect x="1" y="1" width="9" height="9" fill="#F25022"/>
-                    <rect x="13" y="1" width="9" height="9" fill="#7FBA00"/>
-                    <rect x="1" y="13" width="9" height="9" fill="#00A4EF"/>
-                    <rect x="13" y="13" width="9" height="9" fill="#FFB900"/>
-                    </svg>
-                </button>
-                </div>
-                */}
 
                 <form className="form" onSubmit={handleLogin}>
                 <input

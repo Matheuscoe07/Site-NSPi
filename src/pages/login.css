@@ -84,6 +84,14 @@ body{
 }
 .title.alt{ color:#ffffff; }
 
+.left-inner .title{
+  margin-bottom: 4px; /* bem colado no form */
+}
+
+.right-inner .title{
+  margin-bottom: 4px; /* bem colado no form */
+}
+
 .subtitle{
   margin:0 0 10px;
   font-size:18px;
@@ -118,8 +126,10 @@ body{
 /* ===== FORM ===== */
 .form{
   width:100%;
-  display:center;
+  display:flex;
   flex-direction:column;
+  align-items:center;  /* centraliza inputs e botão */
+  gap:14px;            /* espaço padrão entre os elementos */
 }
 
 .input{
@@ -142,9 +152,9 @@ body{
 
 /* ===== BOTÕES ===== */
 .primary{
-  width:80%;
+  width:200px;
   height:44px;
-  border-radius:14px;
+  border-radius:32px;
   border:none;
   background:var(--blue-900);
   color:#fff;
@@ -153,6 +163,7 @@ body{
   cursor:pointer;
   transition: background .15s ease, transform .06s ease, box-shadow .12s ease;
   box-shadow:0 4px 14px rgba(11,42,71,.22);
+  margin-top: 10px;
 }
 .primary:hover{
   background:var(--blue-800);   /* cor um pouco mais clara no hover */
@@ -166,12 +177,13 @@ body{
 }
 
 .ghost{
+  width:200px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   height:44px;
   padding:0 22px;
-  border-radius:14px;
+  border-radius:32px;
   border:2px solid rgba(255,255,255,.6);
   color:#fff;
   text-decoration:none;
@@ -195,8 +207,10 @@ body{
 
 /* ===== LAYOUT DA DIREITA ===== */
 .right-inner{
-  max-width:440px;
-  gap:18px;
+  min-height: 280px;   /* ajusta até ficar proporcional ao form do lado esquerdo */
+  display:flex;
+  flex-direction:column;
+  justify-content:center; /* mantém centralizado dentro desse bloco */
 }
 
 /* ===== RESPONSIVO ===== */
