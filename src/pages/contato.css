@@ -1,0 +1,119 @@
+.contact-root{
+  background:#f7f9fc;
+  color:#0e2237;
+  min-height:100vh;
+}
+
+.contact-root .navbar{
+  width:100% !important;
+  margin-left:0 !important;
+  transform:none !important;
+}
+
+/* container */
+.contact-wrap{
+  width:100%;
+  max-width:1400px;
+  margin:0 auto;
+  padding:24px 40px 70px;
+}
+
+/* ===== header ===== */
+.contact-header{ margin:16px 0 28px; }
+.contact-title{
+  margin:0 0 8px;
+  font-size:clamp(28px,4vw,38px); /* ↑ maior */
+  font-weight:800;
+  color:#0e2640;
+}
+.contact-sub{
+  margin:0;
+  color:#2d3e52;
+  font-size:17px;                /* ↑ maior */
+  line-height:1.55;
+}
+
+/* ===== grid ===== */
+.contact-grid{
+  display:grid;
+  grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+  gap:24px;
+  align-items:start;
+}
+.contact-right{ display:grid; gap:24px; }
+
+/* ===== cards ===== */
+.contact-card{
+  background:#fff;
+  border:1px solid #e6edf4;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+  padding:22px;
+  max-width:100%;
+}
+.contact-card__title{
+  margin:0 0 12px;
+  font-size:clamp(20px,2.2vw,26px); /* ↑ maior */
+  font-weight:800;
+  color:#0e2640;
+}
+.contact-card__subtitle{
+  margin:-2px 0 8px;
+  font-size:14px;                /* ↑ maior */
+  color:#7b889b;
+}
+.contact-card__text{
+  margin:8px 0 0;
+  font-size:17px;                /* ↑ maior */
+  line-height:1.6;
+  color:#2b3a4b;
+}
+
+/* ===== lista de infos ===== */
+.contact-info{ display:grid; gap:12px; margin-top:6px; }
+.contact-field{ display:grid; gap:4px; }
+.contact-field__label{
+  font-size:14px;                /* ↑ maior */
+  color:#8190a6;
+  font-weight:600;
+}
+.contact-field__value{
+  font-size:18px;                /* ↑ maior */
+  font-weight:800;
+  color:#0f2b49;
+}
+.contact-link{ text-decoration:none; color:#0f2b49; }
+.contact-link:hover{ text-decoration:underline; }
+
+/* ===== central de ajuda ===== */
+.contact-helpRow{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+.contact-badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:#f2f6fb;
+  border:1px solid #e3edf9;
+  color:#2b3a4b;
+  font-weight:700;
+  font-size:14px;                /* ↑ maior */
+}
+.contact-badge i{ font-size:16px; }
+.contact-helpNumber{
+  font-size:19px;                /* ↑ maior */
+  font-weight:900;
+  color:#0f2b49;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.contact-helpNumber:hover{ text-decoration:underline; }
+
+/* ===== responsivo ===== */
+@media (max-width: 980px){
+  .contact-wrap{ padding:18px; }
+  .contact-grid{ grid-template-columns:1fr; gap:18px; }
+  .contact-right{ gap:18px; }
+  .contact-card{ padding:18px; }
+  .contact-card__title{ font-size:clamp(18px,5vw,22px); }
+  .contact-card__text{ font-size:16px; }
+  .contact-helpNumber{ font-size:17px; white-space:normal; }
+}

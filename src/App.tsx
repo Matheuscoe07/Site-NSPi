@@ -7,7 +7,7 @@ import Login from './pages/login'
 import Registrar from './pages/registrar'
 import Pedido from './pages/pedido'
 import ProtectedRoute from './ProtectedRoute'
-// import Contato from '@pages/contato'
+import Contato from '@pages/contato'
 import Confirmado from '@pages/confirmado'
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
         {/* Públicas */}
         <Route path="/login" element={<Login />} />
         <Route path="/registrar" element={<Registrar />} />
-        {/* <Route path="/contato" element={<Contato />} /> */}
+        <Route path="/contato" element={<Contato />} />
 
         {/* Protegidas */}
         <Route element={<ProtectedRoute />}>
