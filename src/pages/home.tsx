@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth'
+import Navbar from '../components/navbar'
 import './home.css'
-// ⚠️ Lembra de importar os Bootstrap Icons no entrypoint (ex.: main.tsx):
-// import 'bootstrap-icons/font/bootstrap-icons.css'
 
 type Produto = {
     id: string
@@ -29,42 +28,13 @@ const suportes: Produto[] = [
 
 export default function Home() {
     const navigate = useNavigate()
-    const location = useLocation()
-    const { isAuthenticated, logout } = useAuth()
+    const { isAuthenticated } = useAuth()
 
-    // ======== NAV / DROPDOWN ========
-    const [userMenuOpen, setUserMenuOpen] = useState(false)
-    const userBtnRef = useRef<HTMLButtonElement | null>(null)
-    const dropdownRef = useRef<HTMLDivElement | null>(null)
-    const dropdownId = 'user-dropdown-menu'
-
-    useEffect(() => {
-        const handleDocClick = (e: MouseEvent) => {
-        const target = e.target as Node
-        const btn = userBtnRef.current
-        const dd = dropdownRef.current
-        // clicou dentro do botão ou do dropdown? então não fecha
-        if ((btn && btn.contains(target)) || (dd && dd.contains(target))) return
-        setUserMenuOpen(false)
-        }
-        const handleKey = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') setUserMenuOpen(false)
-        }
-        document.addEventListener('click', handleDocClick)
-        document.addEventListener('keydown', handleKey)
-        return () => {
-        document.removeEventListener('click', handleDocClick)
-        document.removeEventListener('keydown', handleKey)
-        }
-    }, [])
-
-    // ======== HERO -> scroll pra seção ========
     const produtosRef = useRef<HTMLElement | null>(null)
     const scrollToProdutos = () => {
         produtosRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
-    // ======== CARROSSEIS ========
     const [idxSup, setIdxSup] = useState(0)
     const [idxBase, setIdxBase] = useState(0)
 
@@ -81,87 +51,12 @@ export default function Home() {
     const proximoBase = () => setIdxBase(i => (i + 1) % bases.length)
 
     const handleCTA = () => navigate(isAuthenticated ? '/pedido' : '/login')
-    const goBrand = () => navigate('/')
-    const isPath = (p: string) => (location.pathname === p ? 'active' : '')
 
     return (
         <div className="home-root">
-        {/* ======= NAVBAR ======= */}
-        <nav className="navbar">
-            <div className="nav-left" onClick={goBrand} role="button" aria-label="NSPi Home" tabIndex={0}>
-            <img src="/images/logo2.png" alt="NSPi" className="nav-logo" />
-            </div>
+        <Navbar />
 
-            <ul className="nav-center">
-            <li><Link className={`nav-link ${isPath('/')}`} to="/">HOME</Link></li>
-            <li><Link className="nav-link" to="/sobre">SOBRE</Link></li>
-            <li><Link className="nav-link" to="/contato">CONTATO</Link></li>
-            </ul>
-
-            <div className="nav-right">
-            <button
-                ref={userBtnRef}
-                className="user-btn"
-                aria-haspopup="menu"
-                aria-expanded={userMenuOpen}
-                aria-controls={dropdownId}
-                title={isAuthenticated ? 'Conta' : 'Entrar'}
-                // mousedown evita flicker e já bloqueia a propagação
-                onMouseDown={(e) => { e.stopPropagation(); setUserMenuOpen(v => !v) }}
-            >
-                <i className="bi bi-person" aria-hidden="true"></i>
-                {/* oculto visualmente, mas acessível */}
-                <span className="sr-only">{isAuthenticated ? 'Abrir menu da conta' : 'Abrir menu de login'}</span>
-            </button>
-
-            {userMenuOpen && (
-                <div
-                id={dropdownId}
-                className="user-dropdown"
-                role="menu"
-                ref={dropdownRef}
-                >
-                {isAuthenticated ? (
-                    <>
-                    <button
-                        className="dropdown-item"
-                        onClick={() => { setUserMenuOpen(false); navigate('/pedido') }}
-                        role="menuitem"
-                    >
-                        <i className="bi bi-plus-circle" aria-hidden="true"></i> Novo Pedido
-                    </button>
-                    <button
-                        className="dropdown-item"
-                        onClick={() => { logout(); setUserMenuOpen(false) }}
-                        role="menuitem"
-                    >
-                        <i className="bi bi-box-arrow-right" aria-hidden="true"></i> Sair
-                    </button>
-                    </>
-                ) : (
-                    <>
-                    <button
-                        className="dropdown-item"
-                        onClick={() => { setUserMenuOpen(false); navigate('/login') }}
-                        role="menuitem"
-                    >
-                        <i className="bi bi-box-arrow-in-right" aria-hidden="true"></i> Login
-                    </button>
-                    <button
-                        className="dropdown-item"
-                        onClick={() => { setUserMenuOpen(false); navigate('/registrar') }}
-                        role="menuitem"
-                    >
-                        <i className="bi bi-person-plus" aria-hidden="true"></i> Registrar
-                    </button>
-                    </>
-                )}
-                </div>
-            )}
-            </div>
-        </nav>
-
-        {/* ======= HERO ======= */}
+        {/* HERO */}
         <section className="hero-area">
             <img src="/images/foto_inicio.jpg" alt="Ambiente do NSPi" className="hero-bg" loading="eager" />
 
@@ -183,7 +78,7 @@ export default function Home() {
             </button>
         </section>
 
-        {/* ======= PRODUTOS ======= */}
+        {/* PRODUTOS */}
         <section className="produtos" ref={produtosRef} id="produtos">
             <h2 className="produtos-title">Nossos produtos manufaturados</h2>
 
