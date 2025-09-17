@@ -11,6 +11,7 @@ import Contato from '@pages/contato'
 import Confirmado from '@pages/confirmado'
 
 export default function App() {
+  console.log('SUPABASE_URL ->', import.meta.env.VITE_SUPABASE_URL)
   return (
     <AuthProvider>
       <Routes>

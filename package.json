@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/gotrue-js": "^2.71.1",
+    "@supabase/postgrest-js": "^1.21.3",
     "@supabase/supabase-js": "^2.53.0",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
