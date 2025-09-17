@@ -1,69 +1,116 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🤖 Site NSPi
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React%20Native-2025-blue)
+![Typescript](https://img.shields.io/badge/Expo-managed-lightgrey)
+![Node.js](https://img.shields.io/badge/Node.js-backend-green)
+![Supabase](https://img.shields.io/badge/MongoDB-database-brightgreen)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Visão Geral
 
-## Expanding the ESLint configuration
+Este é um site interativo para o Núcleo de Sistema Produtivo Inteligente (NSPi), desenvolvido com **React** e backend em **Node.js, TypeSript com MongoDB**.  
+O projeto faz parte do **Instituto Mauá de Tecnologia**, com o objetivo de trazer a realidade da indústria 4.0 para o ambiente acadêmico.  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🔗 **Protótipo no Figma:** [Acessar Design](https://www.figma.com/design/RwJONMWdySDyC6UnqopMkU/Site-NSPi?node-id=0-1&p=f&t=k5KeLqqB8g0NljZt-0)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 👥 Grupo
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Nome Completo                 |
+| :---------------------------- | 
+| Eike Gonçalves Barbosa        | 
+| Matheus Coelho Pinto          |
+| Eduardo De Medeiros Siqueira  | 
+
+---
+
+---
+
+## 🚀 Começando
+
+### ✅ Pré-requisitos
+
+- Node.js **v18+**
+- npm **v9+**
+- Projeto Supabase configurado (URL + Anon Key)
+
+---
+
+### 📦 Instalação
+
+```bash
+git clone https://github.com/tello24/ProjetoIntegradorSeason3_ChatReact
+cd ProjetoIntegradorSeason3_ChatReact/fokus-base
+npm install
+npm install mongoose cors bcrypt
+npm install react-native-animatable
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ▶️ Executando o projeto
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# TERMINAL 1
+npm run dev
+
 ```
+
+
+---
+
+
+```
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+SITE-NSPI/
+├── node_modules/ 
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── lib/
+│   ├── criarPedido.ts
+│   ├── pages/
+│   │   ├── confirmado.css
+│   │   ├── confirmado.tsx
+│   │   ├── contato.css
+│   │   ├── contato.tsx
+│   │   ├── home.css
+│   │   ├── home.tsx
+│   │   ├── login.css
+│   │   ├── login.tsx
+│   │   ├── pedido.css
+│   │   ├── pedido.tsx
+│   │   ├── registrar.css
+│   │   └── registrar.tsx
+│   ├── utils/
+│   │   ├── authService.ts
+│   │   ├── supabase.ts
+│   │   └── validators.ts
+│   ├── App.css
+│   ├── App.tsx
+│   ├── auth.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   ├── ProtectedRoute.tsx
+│   └── vite-env.d.ts
+├── .env
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── README.md
+├── package-lock.json
+├── package.json
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+└── vite.config.ts
+
+```
+
