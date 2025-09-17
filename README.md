@@ -8,7 +8,7 @@
 
 ## 📌 Visão Geral
 
-Este é um site interativo para o Núcleo de Sistema Produtivo Inteligente (NSPi), desenvolvido com **React** e backend em **Node.js, TypeSript com MongoDB**.  
+Este é um site interativo para o Núcleo de Sistema Produtivo Inteligente (NSPi), desenvolvido com **React** e backend em **Node.js, TypeSript com SQL**.  
 O projeto faz parte do **Instituto Mauá de Tecnologia**, com o objetivo de trazer a realidade da indústria 4.0 para o ambiente acadêmico.  
 
 🔗 **Protótipo no Figma:** [Acessar Design](https://www.figma.com/design/RwJONMWdySDyC6UnqopMkU/Site-NSPi?node-id=0-1&p=f&t=k5KeLqqB8g0NljZt-0)
