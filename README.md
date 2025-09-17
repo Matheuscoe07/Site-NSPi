@@ -37,14 +37,6 @@ O projeto faz parte do **Instituto Mauá de Tecnologia**, com o objetivo de traz
 
 ---
 
-### 📦 Instalação
-
-```bash
-git clone https://github.com/tello24/ProjetoIntegradorSeason3_ChatReact
-cd ProjetoIntegradorSeason3_ChatReact/fokus-base
-npm install
-npm install mongoose cors bcrypt
-npm install react-native-animatable
 ```
 
 ---
@@ -112,5 +104,4 @@ SITE-NSPI/
 ├── tsconfig.node.json
 └── vite.config.ts
 
-```
 
