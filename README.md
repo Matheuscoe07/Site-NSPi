@@ -37,7 +37,6 @@ O projeto faz parte do **Instituto Mauá de Tecnologia**, com o objetivo de traz
 
 ---
 
-```
 
 ---
 
@@ -50,10 +49,9 @@ npm run dev
 ```
 
 
----
 
 
-```
+
 
 ---
 
@@ -103,5 +101,4 @@ SITE-NSPI/
 ├── tsconfig.app.json
 ├── tsconfig.node.json
 └── vite.config.ts
-
-
+```
