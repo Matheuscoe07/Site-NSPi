@@ -1,32 +1,37 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { criarPedidoSimples } from '../lib/criarPedido'
 import './pedido.css'
 
-interface CorItem {
+/** Ajuste se sua rota de sucesso for diferente */
+const SUCCESS_PATH = '/confirmado'
+const PUBLIC_PRODUTOS_DIR = '/images/produtos'
+
+type ChaveSuporte = 'Azul' | 'Vermelho' | 'Amarelo' | 'Verde'
+type ChaveBase = 'Branca' | 'Cinza' | 'CinzaEscura' | 'Preta' | 'Trans'
+
+interface CorItem<T extends string> {
   id: number
-  cor: string
-  imagem: string
-  label?: string
+  key: T
+  label: string
+  color?: string
+  transparente?: boolean
 }
 
-const coresSuporte: CorItem[] = [
-  { id: 1, cor: 'blue',   imagem: '/images/sup_azul.png',     label: 'Azul' },
-  { id: 2, cor: 'red',    imagem: '/images/sup_vermelho.png', label: 'Vermelho' },
-  { id: 3, cor: 'yellow', imagem: '/images/sup_amarelo.png',  label: 'Amarelo' },
-  { id: 4, cor: 'green',  imagem: '/images/sup_verde.png',    label: 'Verde' },
+const coresSuporte: CorItem<ChaveSuporte>[] = [
+  { id: 1, key: 'Azul',     label: 'Azul',     color: '#2563eb' },
+  { id: 2, key: 'Vermelho', label: 'Vermelho', color: '#dc2626' },
+  { id: 3, key: 'Amarelo',  label: 'Amarelo',  color: '#f59e0b' },
+  { id: 4, key: 'Verde',    label: 'Verde',    color: '#16a34a' },
 ]
 
-const coresBase: CorItem[] = [
-  { id: 5,  cor: 'black',        imagem: '/images/ba_preto.png',         label: 'Preto' },
-  { id: 6,  cor: 'lightgray',    imagem: '/images/ba_cinzaCA.png',       label: 'Cinza claro' },
-  { id: 8,  cor: 'darkgray',     imagem: '/images/ba_cinzaES.png',       label: 'Cinza escuro' },
-  { id: 9,  cor: 'white',        imagem: '/images/ba_branco.png',        label: 'Branco' },
-  { id: 10, cor: 'transparente', imagem: '/images/ba_transparente.png',  label: 'Transparente' },
+const coresBase: CorItem<ChaveBase>[] = [
+  { id: 5, key: 'Branca',      label: 'Branco',        color: '#f5f5f5' },
+  { id: 6, key: 'Cinza',       label: 'Cinza',         color: '#9ca3af' },
+  { id: 7, key: 'CinzaEscura', label: 'Cinza escuro',  color: '#4b5563' },
+  { id: 8, key: 'Preta',       label: 'Preto',         color: '#0a0a0a' },
+  { id: 9, key: 'Trans',       label: 'Transparente',  transparente: true },
 ]
-
-/** Troque aqui se sua rota de sucesso for diferente */
-const SUCCESS_PATH = '/confirmado'
 
 /** heurística pra checar se a API realmente criou algo */
 function isSuccess(result: any): boolean {
@@ -35,7 +40,6 @@ function isSuccess(result: any): boolean {
   if (result.success === true) return true
   if (typeof result.status === 'string' && result.status.toLowerCase() === 'ok') return true
   if (result.data) {
-    // id direto, ou um array com item criado, ou contagem de linhas
     if (result.data.id) return true
     if (Array.isArray(result.data) && result.data.length > 0) return true
     if (typeof result.data === 'number' && result.data > 0) return true
@@ -44,16 +48,33 @@ function isSuccess(result: any): boolean {
   return false
 }
 
+/** monta o nome do arquivo exatamente como está na pasta public */
+function buildPreviewPath(suporte: ChaveSuporte, base: ChaveBase): string {
+  return `${PUBLIC_PRODUTOS_DIR}/Sup${suporte}Base${base}.png`
+}
+
 export default function Pedido() {
   const navigate = useNavigate()
   const [etapa, setEtapa] = useState<'suporte' | 'base'>('suporte')
-  const [corSuporte, setCorSuporte] = useState<CorItem>(coresSuporte[0])
-  const [corBase, setCorBase] = useState<CorItem>(coresBase[0])
+  const [corSuporte, setCorSuporte] = useState<CorItem<ChaveSuporte>>(coresSuporte[0])
+  const [corBase, setCorBase] = useState<CorItem<ChaveBase>>(coresBase[0])
   const [loading, setLoading] = useState(false)
+  const [imgError, setImgError] = useState(false)
 
   const lista = etapa === 'suporte' ? coresSuporte : coresBase
   const selecionado = etapa === 'suporte' ? corSuporte : corBase
-  const setSelecionado = etapa === 'suporte' ? setCorSuporte : setCorBase
+  const setSelecionado =
+    etapa === 'suporte' ? setCorSuporte : setCorBase
+
+  const previewSrc = useMemo(
+    () => buildPreviewPath(corSuporte.key, corBase.key),
+    [corSuporte.key, corBase.key]
+  )
+
+  /** reseta estado de erro quando a combinação muda */
+  useEffect(() => {
+    setImgError(false)
+  }, [previewSrc])
 
   function goPrev() { if (etapa === 'base') setEtapa('suporte') }
   function goNext() { if (etapa === 'suporte') setEtapa('base') }
@@ -69,8 +90,7 @@ export default function Pedido() {
         return
       }
 
-      const nome_customizado =
-        `Suporte ${corSuporte.label ?? corSuporte.cor} + Base ${corBase.label ?? corBase.cor}`
+      const nome_customizado = `Suporte ${corSuporte.label} + Base ${corBase.label}`
 
       const result = await criarPedidoSimples({
         id_usuario,
@@ -100,11 +120,20 @@ export default function Pedido() {
 
       {/* preview central */}
       <div className="stage">
-        <img
-          className="piece"
-          src={etapa === 'suporte' ? corSuporte.imagem : corBase.imagem}
-          alt={`${etapa} ${selecionado.label ?? selecionado.cor}`}
-        />
+        {!imgError ? (
+          <img
+            className="piece"
+            src={previewSrc}
+            alt={`Suporte ${corSuporte.label} + Base ${corBase.label}`}
+            loading="lazy"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="piece missing">
+            <span>Imagem não encontrada para esta combinação.</span>
+            <small>{`Sup${corSuporte.key}Base${corBase.key}.png`}</small>
+          </div>
+        )}
 
         {etapa === 'base' && (
           <button
@@ -137,22 +166,14 @@ export default function Pedido() {
               <button
                 key={item.id}
                 className={`dot-wrap ${ativo ? 'active' : ''}`}
-                onClick={() => setSelecionado(item)}
-                title={item.label ?? item.cor}
+                onClick={() => setSelecionado(item as any)}
+                title={item.label}
               >
                 <span
-                  className="dot"
-                  style={item.cor !== 'transparente' ? { backgroundColor: item.cor } : {}}
-                >
-                  {item.cor === 'transparente' && (
-                    <img
-                      src="/images/transparente.png"
-                      className="dot-img"
-                      alt="Transparente"
-                    />
-                  )}
-                </span>
-                {ativo && <small className="dot-label">{item.label ?? item.cor}</small>}
+                  className={`dot ${item.transparente ? 'dot-transparent' : ''}`}
+                  style={!item.transparente ? { backgroundColor: item.color } : undefined}
+                />
+                {ativo && <small className="dot-label">{item.label}</small>}
               </button>
             )
           })}
