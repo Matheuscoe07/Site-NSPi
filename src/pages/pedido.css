@@ -185,6 +185,7 @@ body{ margin:0 }
     border-radius: 100%;
   }
   .bar-arrow{ width:68px; height:68px }
+}
 
 @media (max-width: 640px){
   :root{ --bar-h: 104px; }
@@ -192,7 +193,6 @@ body{ margin:0 }
   .piece{
     width: 92vw;
     max-height: 46vh;
-    
   }
   .bar-arrow{ width:72px; height:72px; border-radius:18px }
   .pronto-pill{ bottom: calc(var(--bar-h) - 40px) }
