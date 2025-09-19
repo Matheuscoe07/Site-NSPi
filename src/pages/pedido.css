@@ -1,5 +1,5 @@
 :root{
-  --bg:#eeeef0;
+  --bg:#efefef;
   --white:#fff;
   --navy:#0b2a47;
   --pill-green:#22c55e;
@@ -37,6 +37,7 @@ body{ margin:0 }
 
 /* preview */
 .stage{
+  background: #efefef;
   position:relative;
   flex:1;
   display:grid;
@@ -181,9 +182,9 @@ body{ margin:0 }
   .piece{
     width: clamp(680px, 54vw, 1000px);
     max-height: calc(100vh - var(--bar-h) - 190px);
+    border-radius: 100%;
   }
   .bar-arrow{ width:68px; height:68px }
-}
 
 @media (max-width: 640px){
   :root{ --bar-h: 104px; }
@@ -191,6 +192,7 @@ body{ margin:0 }
   .piece{
     width: 92vw;
     max-height: 46vh;
+    
   }
   .bar-arrow{ width:72px; height:72px; border-radius:18px }
   .pronto-pill{ bottom: calc(var(--bar-h) - 40px) }

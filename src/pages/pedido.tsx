@@ -21,7 +21,7 @@ interface CorItem<T extends string> {
 const coresSuporte: CorItem<ChaveSuporte>[] = [
   { id: 1, key: 'Azul',     label: 'Azul',     color: '#2563eb' },
   { id: 2, key: 'Vermelho', label: 'Vermelho', color: '#dc2626' },
-  { id: 3, key: 'Amarelo',  label: 'Amarelo',  color: '#f59e0b' },
+  { id: 3, key: 'Amarelo',  label: 'Amarelo',  color: '#F0E500' },
   { id: 4, key: 'Verde',    label: 'Verde',    color: '#16a34a' },
 ]
 
