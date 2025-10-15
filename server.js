@@ -1,5 +1,5 @@
-const http = require('http');
-const express = require('express');
+import http from 'http';
+import express from 'express';
 
 const app = express();
 
