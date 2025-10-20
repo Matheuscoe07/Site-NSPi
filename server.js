@@ -12,9 +12,10 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "dist")));
 
 // qualquer rota que não exista volta pro index.html (pra funcionar com React Router)
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
+
 
 const PORT = 80; // pode trocar pra 443 depois se for HTTPS
 app.listen(PORT, () => {
