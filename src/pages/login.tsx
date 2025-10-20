@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom' // 👈 ADD useLocation
-import './Login.css'
+import './login.css'
 import supabase from '../utils/supabase'
 import bcrypt from 'bcryptjs' // pra validar senha_hash do banco
 
