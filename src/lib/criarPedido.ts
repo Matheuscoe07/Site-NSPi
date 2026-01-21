@@ -123,7 +123,7 @@ export async function criarPedidoSimples({
     const { data: existente, error: findProdErr } = await supabase
       .from('produtos_personalizados')
       .select('id_produto')
-      .eq('id_usuario', id_usuario)
+      //.eq('id_usuario', id_usuario)
       .eq('id_base', idBase)
       .eq('id_suporte', idSuporte)
       .maybeSingle()
@@ -137,11 +137,11 @@ export async function criarPedidoSimples({
       const { data: novo, error: createProdErr } = await supabase
         .from('produtos_personalizados')
         .insert([{
-          id_usuario,
+          //id_usuario,
           id_base: idBase,
           id_suporte: idSuporte,
           nome_customizado,
-          status_producao: 'pendente',
+          //status_producao: 'pendente',
           data_criacao: new Date().toISOString(),
         }])
         .select('id_produto')
@@ -159,7 +159,7 @@ export async function criarPedidoSimples({
       .insert([{
         id_usuario,
         id_produto,
-        status_pedido: 'recebido',
+        status_pedido: 'novo',
         data_pedido: new Date().toISOString(),
       }])
       .select('*')
