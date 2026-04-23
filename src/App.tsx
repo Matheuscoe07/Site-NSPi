@@ -9,6 +9,7 @@ import Pedido from './pages/pedido'
 import ProtectedRoute from './ProtectedRoute'
 import Contato from '@pages/contato'
 import Confirmado from '@pages/confirmado'
+import Operador from '@pages/operador'
 
 export default function App() {
   console.log('SUPABASE_URL ->', import.meta.env.VITE_SUPABASE_URL)
@@ -16,7 +17,7 @@ export default function App() {
     <AuthProvider>
       <Routes>
         {/* Home única (mostra estados diferentes conforme login) */}
-        <Route path="/" element={<Home />} /> {/* VOLTAR PARA A TELA HOME!!!!!!!!!!!!! */}
+        <Route path="/" element={<Operador />} /> {/* VOLTAR PARA A TELA HOME!!!!!!!!!!!!! */}
 
         {/* Públicas */}
         <Route path="/login" element={<Login />} />

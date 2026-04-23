@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1e1e1e;
+}
+
+/* container principal */
+.container {
+  background: #d9d9d9;
+  margin: 30px auto;
+  padding: 20px;
+  width: 90%;
+  border-radius: 10px;
+}
+
+/* título */
+.titulo {
+  text-align: center;
+  background: #0f2d4a;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.tabela {
+  width: 100%;
+}
+
+/* header e linhas com MESMA estrutura */
+.tabela thead tr,
+.tabela tbody tr {
+  display: grid;
+  grid-template-columns: 0.8fr 1.5fr 1fr 1fr 1.2fr 1.5fr;
+  align-items: center;
+}
+
+/* espaço entre linhas */
+.tabela tbody {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* header */
+.tabela th {
+  background: #0f2d4a;
+  color: white;
+  padding: 14px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+/* linhas */
+.tabela td {
+  background: #f1f1f1;
+  padding: 16px;
+  text-align: center;
+}
+
+/* ações (botões dentro da tabela) */
+.acoes {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* botões */
+.editar,
+.cancelar {
+  background-color: #4a86c5;
+  color: white;
+  border: none;
+  padding: 2.5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.editar:hover,
+.cancelar:hover {
+  background-color: #0f2d4a;
+}
+
+.espacamento {
+    padding-top: 10px;
+}
