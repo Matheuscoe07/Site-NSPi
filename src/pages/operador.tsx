@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./operador.css";
+import type { Dados } from "../lib/pegarDados.ts";
+import rodar from "../lib/pegarDados.ts";
 
-const pedidos = [
-  { id: 101, usuario: "Davi", base: "Azul", suporte: "Branco", status: "Aberto" },
-  { id: 102, usuario: "Maria", base: "RJ", suporte: "N2", status: "Fechado" },
-  { id: 103, usuario: "Carlos", base: "MG", suporte: "N1", status: "Em andamento" },
-];
+const [pedidos, setPedidos] = useState<Dados[]>([]);
 
 const Operador: React.FC = () => {
+    const [pedidos, setPedidos] = useState<Dados[]>([]);
+
+  useEffect(() => {
+    async function carregar() {
+      try {
+        const dados = await rodar();
+        setPedidos(dados);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    carregar();
+  }, []);
   return (
     <div className="container">
       <h1 className="titulo">Controle de Pedidos</h1>
@@ -27,9 +39,9 @@ const Operador: React.FC = () => {
     <div className="espacamento">
         <tbody>
           {pedidos.map((pedido) => (
-            <tr key={pedido.id}>
-              <td>{pedido.id}</td>
-              <td>{pedido.usuario}</td>
+            <tr key={pedido.id_pedido}>
+              <td>{pedido.id_pedido}</td>
+              <td>{pedido.nome_completo}</td>
               <td>{pedido.base}</td>
               <td>{pedido.suporte}</td>
               <td>{pedido.status}</td>
