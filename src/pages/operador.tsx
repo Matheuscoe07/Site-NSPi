@@ -3,23 +3,22 @@ import "./operador.css";
 import type { Dados } from "../lib/pegarDados.ts";
 import rodar from "../lib/pegarDados.ts";
 
-const [pedidos, setPedidos] = useState<Dados[]>([]);
+//const [pedidos, setPedidos] = useState<Dados[]>([]);
 
 const Operador: React.FC = () => {
     const [pedidos, setPedidos] = useState<Dados[]>([]);
-
-  useEffect(() => {
-    async function carregar() {
-      try {
-        const dados = await rodar();
-        setPedidos(dados);
-      } catch (err) {
-        console.error(err);
-      }
+    useEffect(() => {
+  async function carregar() {
+    try {
+      const dados = await rodar();
+      setPedidos(dados);
+    } catch (err) {
+      console.error(err);
     }
+  }
 
-    carregar();
-  }, []);
+  carregar();
+}, []);
   return (
     <div className="container">
       <h1 className="titulo">Controle de Pedidos</h1>
