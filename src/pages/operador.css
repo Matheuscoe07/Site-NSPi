@@ -86,3 +86,45 @@ body {
 .espacamento {
     padding-top: 10px;
 }
+
+.modal {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.form label {
+  font-weight: bold;
+}
+
+.form input,
+.form select {
+  padding: 6px;
+}
+
+.botoes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.salvar {
+  background: green;
+  color: white;
+}
+
+.voltar {
+  background: red;
+  color: white;
+}
