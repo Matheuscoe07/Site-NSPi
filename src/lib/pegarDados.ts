@@ -8,12 +8,14 @@ export type Dados = {
     status:string;
 };
 
-async function pegarDados(){
+async function pegarDados(paginaAtual : number, itensPorPagina : number){
 
     //Pega todos os dados da tabela pedido
     const { data: pedidos, error: pedidosErr } = await supabase
         .from('pedidos')
         .select('id_pedido, id_usuario, id_produto, status_pedido')
+        .order("id_pedido", { ascending: false })
+        .range((paginaAtual-1)*itensPorPagina, paginaAtual*itensPorPagina)
 
     if (pedidosErr) throw new Error(`Erro consultando pedidos: ${pedidosErr.message}`)
     

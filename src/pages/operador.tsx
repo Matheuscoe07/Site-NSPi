@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from "react";
 import "./operador.css";
 import type { Dados } from "../lib/pegarDados.ts";
-import rodar from "../lib/pegarDados.ts";
+import pegarDados from "../lib/pegarDados.ts";
 
-//const [pedidos, setPedidos] = useState<Dados[]>([]);
 
 const Operador: React.FC = () => {
-    const [pedidos, setPedidos] = useState<Dados[]>([]);
-    useEffect(() => {
-  async function carregar() {
-    try {
-      const dados = await rodar();
-      setPedidos(dados);
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  const [pedidos, setPedidos] = useState<Dados[]>([]);
+  const [paginaAtual, setPaginaAtual] = useState(1);
 
-  carregar();
-}, []);
+  const itensPorPagina = 20;
+
+  useEffect(() => {
+    async function carregar() {
+      try {
+        const dados = await pegarDados(paginaAtual, itensPorPagina); 
+        setPedidos(dados);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    carregar();
+  }, [paginaAtual]); 
+
   return (
     <div className="container">
       <h1 className="titulo">Controle de Pedidos</h1>
 
-    <table className="tabela">
+      <table className="tabela">
         <thead>
           <tr>
             <th>id pedido</th>
@@ -35,7 +39,6 @@ const Operador: React.FC = () => {
           </tr>
         </thead>
 
-    <div className="espacamento">
         <tbody>
           {pedidos.map((pedido) => (
             <tr key={pedido.id_pedido}>
@@ -52,8 +55,25 @@ const Operador: React.FC = () => {
             </tr>
           ))}
         </tbody>
-         </div>
       </table>
+
+      <div style={{ marginTop: "10px" }}>
+        <button
+          onClick={() => setPaginaAtual((p) => Math.max(p - 1, 1))}
+        >
+          Anterior
+        </button>
+
+        <span style={{ margin: "0 10px" }}>
+          Página {paginaAtual} 
+        </span>
+
+        <button
+          onClick={() => setPaginaAtual((p) => p + 1)}
+        >
+          Próxima
+        </button>
+      </div>
     </div>
   );
 };
