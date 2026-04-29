@@ -100,7 +100,7 @@ export default function Pedido() {
       })
 
       if (isSuccess(result)) {
-        navigate(SUCCESS_PATH)
+        navigate(SUCCESS_PATH, { state: { id_pedido: result.pedido.id_pedido } })
       } else {
         console.error('Falha ao criar pedido:', result)
         alert('Não consegui criar seu pedido agora. Tenta de novo em alguns segundos.')

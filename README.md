@@ -21,7 +21,7 @@ O projeto faz parte do **Instituto Mauá de Tecnologia**, com o objetivo de traz
 | :---------------------------- | 
 | Eike Gonçalves Barbosa        | 
 | Matheus Coelho Pinto          |
-| Eduardo De Medeiros Siqueira  | 
+| Helena Romeu Gallas  | 
 
 ---
 
