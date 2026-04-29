@@ -17,7 +17,7 @@ export default function App() {
     <AuthProvider>
       <Routes>
         {/* Home única (mostra estados diferentes conforme login) */}
-        <Route path="/" element={<Operador />} /> {/* VOLTAR PARA A TELA HOME!!!!!!!!!!!!! */}
+        <Route path="/" element={<Home />} /> {/* VOLTAR PARA A TELA HOME!!!!!!!!!!!!! */}
 
         {/* Públicas */}
         <Route path="/login" element={<Login />} />
@@ -28,6 +28,7 @@ export default function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/pedido" element={<Pedido />} />
           <Route path="/confirmado" element={<Confirmado />} />
+          <Route path="/operador" element={<Operador />} />
         </Route>
       </Routes>
     </AuthProvider>

@@ -12,7 +12,7 @@ export default function Login() {
   const location = useLocation() // 👈 ADD
 
   // 👇 path de destino: se veio de rota protegida, volta pra lá; senão vai pra /pedido
-  const from = (location.state as any)?.from?.pathname || '/pedido'
+  let from = (location.state as any)?.from?.pathname || '/pedido'
 
   // 👇 helper de redirect com fallback hard (resolve loop do guard/SPA)
   function redirectSafely(path: string) {
@@ -39,13 +39,15 @@ export default function Login() {
         password: pass,
       })
 
+
       if (!authErr && auth?.user) {
         // carrega perfil (se existir) e guarda
-        const { data: perfil } = await supabase
+        const { data: perfil, error: loginErr} = await supabase
           .from('usuarios')
           .select('id_usuario, tipo_usuario')
           .eq('email', emailNorm)
           .maybeSingle()
+        if (loginErr) throw new Error(`Erro carregando o perfil: ${loginErr.message}`)
 
         if (perfil?.id_usuario) localStorage.setItem('usuario_id', String(perfil.id_usuario))
         if (perfil?.tipo_usuario) localStorage.setItem('tipo_usuario', perfil.tipo_usuario)
@@ -76,11 +78,15 @@ export default function Login() {
 
       // login LEGADO ok → “sessão” local
       localStorage.setItem('usuario_id', String(row.id_usuario))
-      localStorage.setItem('tipo_usuario', row.tipo_usuario || 'user')
+      localStorage.setItem('tipo_usuario', row.tipo_usuario)
       localStorage.setItem('legacy_login', '1')
+      if(localStorage.getItem("tipo_usuario") == "operator"){
+        redirectSafely('/operador')
+      } else{
+        redirectSafely(from)
+      }
 
       // ✅ REDIRECT usando "from" ou /pedido
-      redirectSafely(from)
     } catch (err) {
       console.error(err)
       alert('Erro ao tentar fazer login.')
